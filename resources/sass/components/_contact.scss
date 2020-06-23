@@ -1,0 +1,62 @@
+.contact__form {
+    padding: 10px 0;
+    position: relative;
+    &--label {
+        margin: 10px 0 10px 0;
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+    }
+    &--input {
+        width: 100%;
+        input {
+            &:focus {
+                border-color: $theme-color!important;
+            }
+        }
+    }
+    &--textarea {
+        min-height: 100px;
+        width: 100%;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+    &--dropdrown {
+        color: #000;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+
+    &--error {
+        color: red;
+        text-align: left;
+        font-size: 10px;
+        padding-top: 2px;
+    }
+    &--btn {
+        background-color: $theme-color!important;
+    }
+    .ui.selection.dropdown {
+        min-width: 100%!important;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+    .ui.selection.active.dropdown {
+        border-color: $theme-color!important;
+    }
+    .ui.selection.active.dropdown .menu {
+        border-color: $theme-color!important;
+    }
+
+    .ui.checkbox input[type="checkbox"]:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:focus ~ label:before,
+    .ui.checkbox input[type="checkbox"]:indeterminate:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:indeterminate:focus ~ label:before,
+    .ui.checkbox input[type="checkbox"]:checked:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:checked:focus ~ label:before {
+        border: 1px solid $theme-color;
+    }
+}

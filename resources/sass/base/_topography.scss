@@ -1,0 +1,15 @@
+.my-container {
+    width: 85%;
+    padding: 12px;
+    margin-right: auto;
+    margin-left: auto;
+    @include screen('large') {
+        width: 85%;
+    }
+}
+
+.auth-error {
+    color: red;
+    text-align: center;
+    font-size: 11px;
+}

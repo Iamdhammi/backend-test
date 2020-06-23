@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "js-cookie": "^2.2.1",
         "prop-types": "^15.7.2",
         "react-loader-spinner": "^3.1.14",
         "react-modal": "^3.11.2",
@@ -32,6 +33,7 @@
         "react-router-dom": "^5.2.0",
         "react-toastify": "^6.0.6",
         "redux": "^4.0.5",
+        "redux-persist": "^6.0.0",
         "redux-thunk": "^2.3.0",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.88.2",

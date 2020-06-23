@@ -1,8 +1,17 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import './abstracts/variables';
+@import './abstracts/mixins';
+
+@import './base/topography';
+
+@import './components/navbar';
+@import './components/contact';
+@import './components/registration';
+
+@import './pages/landingPage';
