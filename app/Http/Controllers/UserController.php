@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Talk;
 use App\Attendee;
+use App\TalkAttendee;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
         $talk->talk_name = $data['name'];
         $talk->talk_date = $data['date'];
         $talk->talk_time = $data['time'];
-        $talk->talk_address = $data['venue'];
+        $talk->talk_venue = $data['venue'];
 
         $talk->save();
 
@@ -38,6 +39,38 @@ class UserController extends Controller
             'talks' => $talks,
             'success' => true
         ], 200);
+    }
+
+    public function getTalk($id = null) {
+        $userId = Auth::id();
+        $talk = Talk::where('user_id', $userId)->with('TalkAttendee')->where('id', $id)->first();
+        return response()->json([
+            'talk' => $talk,
+            'success' => true
+        ], 200);
+    }
+
+    public function addAttendeeToTalk($id = null, Request $request) {
+        $userId = Auth::id();
+        $attendeesIds = $request->all();
+
+        foreach($attendeesIds as $attendeesId) {
+            $attendee = Attendee::where('id', $attendeesId)->where('user_id', $userId)->first();
+
+            $talkAttendee = new TalkAttendee;
+            $talkAttendee->user_id = $userId;
+            $talkAttendee->talk_id = $id;
+            $talkAttendee->attendee_id = $attendeesId;
+            $talkAttendee->full_name = $attendee->full_name;
+            $talkAttendee->email = $attendee->email;
+            $talkAttendee->save();
+        }
+
+        return response()->json([
+            "message" => "Attendee(s) added successfully",
+            "success" => true
+        ], 200);
+
     }
 
     public function deleteTalk($id = null) {
@@ -62,15 +95,11 @@ class UserController extends Controller
         $userId = Auth::id();
         $data = $request->all();
 
-        $validator = Validator::make($request->all(), [
-            'fullName' => 'required',
-            'email' => 'required|unique:attendees'
-        ]);
-        
-        if ($validator->fails()) {
-            $errorMessages = $validator->messages();
+        $attendee = Attendee::where('user_id', $userId)->where('email', $data['email'])->first();
+
+        if ($attendee) {
             return response()->json([
-                'message' => $errorMessages,
+                'message' => "Email has already been added",
                 'success' => false
             ], 500);
         } else {
@@ -102,6 +131,24 @@ class UserController extends Controller
         $userId = Auth::id();
 
         $attendee = Attendee::where('user_id', $userId)->where('id', $id)->first();
+        if(!$attendee) {
+            return response()->json([
+                'message' => 'Attendee not found',
+                'success' => false
+            ], 404);
+        }
+
+        $attendee->delete();
+        return response()->json([
+            'message' => 'Attendee deleted successfully',
+            'success' => true
+        ], 200);
+    }
+
+    public function deleteTalkAttendee($talk_id = null, $id = null) {
+        $userId = Auth::id();
+
+        $attendee = TalkAttendee::where('user_id', $userId)->where('talk_id', $talk_id)->where('id', $id)->first();
         if(!$attendee) {
             return response()->json([
                 'message' => 'Attendee not found',

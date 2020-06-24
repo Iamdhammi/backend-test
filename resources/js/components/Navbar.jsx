@@ -35,6 +35,8 @@ function Navbar(props) {
         props.login_user(credential);
     }
 
+    const userEmail = localStorage.getItem('userEmail')
+
     return (
         <div className={ dashboard ? "navbar-dashboard" : "navbar"} >
             <div className="my-container">
@@ -44,7 +46,7 @@ function Navbar(props) {
                         <ul>
                             {
                                 dashboard ?
-                                <li></li> :
+                                <li>Welcome {userEmail}!</li> :
                                 <li><a className="authButton" onClick={openModal}> <Icon name="sign-in"/> Sign in</a></li>
                             }
                         </ul>

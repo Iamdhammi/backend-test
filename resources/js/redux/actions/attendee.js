@@ -53,7 +53,7 @@ export const get_all_attendees = () => dispatch => {
 
 export const delete_attendee = id => dispatch => {
     baseConfig
-    .delete(`/api/attendees/${id}`)
+    .delete(`/api/attendees/delete/${id}`)
     .then( response => {
         console.log(response);
         dispatch({

@@ -10,8 +10,9 @@ import { persistStore } from "redux-persist";
 import PrivateRoute from './common/privateRoute';
 
 import Index from './pages';
-import Dashboard from './pages/auth/Dashboard';
+import Talks from './pages/auth/Talks';
 import Attendees from './pages/auth/Attendees';
+import Talk from './pages/auth/Talk';
 
 
 export default function Routes() {
@@ -48,8 +49,9 @@ export default function Routes() {
               <Router history={history}>
                   <Switch>
                       <Route exact path="/" component={Index} />
-                      <PrivateRoute exact={true} path="/dashboard" component={Dashboard} />
+                      <PrivateRoute exact={true} path="/talks" component={Talks} />
                       <PrivateRoute exact={true} path="/attendees" component={Attendees} />
+                      <PrivateRoute exact={true} path="/talks/:id" component={Talk} />
                   </Switch>
               </Router>
           </Provider>

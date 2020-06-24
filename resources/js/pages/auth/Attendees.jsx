@@ -11,9 +11,10 @@ import { get_all_attendees, delete_attendee } from '../../redux/actions/attendee
 import Datatable from '../../components/DataTable';
 import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
+import { logout_user } from '../../redux/actions/auth';
 
 function Attendees(props) {
-    const { clear_success, clear_error, successMessage, errorMessage, get_all_attendees, attendees, loading, delete_attendee } = props;
+    const { clear_success, clear_error, successMessage, errorMessage, get_all_attendees, attendees, loading, delete_attendee, logout_user } = props;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [allAttendees, setAllAttendees] = React.useState([]);
 
@@ -63,9 +64,9 @@ function Attendees(props) {
                     <div className="row">
                         <div className="col-lg-3 col-md-4">
                             <div className="dashboard__content--sidebar">
-                                <Link to="/dashboard"> <Icon name="dashboard" /> My Talks</Link>
+                                <Link to="/talks"> <Icon name="dashboard" /> My Talks</Link>
                                 <Link to="/attendees" className="active"><Icon name="users" /> Attendees</Link>
-                                <a><Icon name="log out" /> Log out</a>
+                                <a onClick={logout_user}><Icon name="log out" /> Log out</a>
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-8">
@@ -105,5 +106,5 @@ const mapStateToProps = ({attendee}) => {
 }
 export default connect(
     mapStateToProps,
-    {clear_success, get_all_attendees, clear_error, delete_attendee}
+    {clear_success, get_all_attendees, clear_error, delete_attendee, logout_user}
 )(Attendees);

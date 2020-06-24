@@ -15,6 +15,9 @@
                 cursor: pointer;
                 color: #000;
 
+                &:hover {
+                    color: $theme-color;
+                }
                 &.active {
                     background-color: $theme-color;
                     border-color: $theme-color;
@@ -44,4 +47,12 @@
 
 .datatable-section {
     margin: 20px 0;
+}
+
+.talk-section {
+    margin: 10px 0;
+
+    &__details {
+        display: flex;
+    }
 }

@@ -3,9 +3,12 @@ import { Button } from 'semantic-ui-react';
 import Navbar from '../components/Navbar';
 import { checkPropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { clear_error } from '../redux/actions';
 
 function Index(props) {
-    const {isLoggedin, history}= props;
+    const {isLoggedin, history, errorMessage, clear_error}= props;
     React.useEffect(() => {
         changeBackground();
     }, []);
@@ -13,9 +16,18 @@ function Index(props) {
      React.useEffect(() => {
         // const token = localStorage.getItem('eventToken')
         if(isLoggedin) {
-            history.push('/dashboard');
+            history.push('/talks');
         }
     }, [isLoggedin, history]);
+
+    React.useEffect(() => {
+        if(errorMessage) {
+            toast.error(errorMessage, {
+                autoClose: 8000
+            })
+            clear_error();
+        }
+    }, [errorMessage]);
 
     const changeBackground = () => {
         var bg = [
@@ -37,6 +49,7 @@ function Index(props) {
 
     return (
         <div>
+            <ToastContainer autoClose={8000} pauseOnHover={true}/>
             <div className="landingPage-nav">
                 <Navbar history={props.history} />
             </div>
@@ -56,11 +69,12 @@ function Index(props) {
 const mapStatToProps = ({ auth }) => {
     return {
         isLoggedin: auth.isLoggedin,
+        errorMessage: auth.errorMessage
     }
 }
 
 
 export default connect(
     mapStatToProps,
-    {}
+    {clear_error}
 )(Index);

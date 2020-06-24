@@ -25,6 +25,7 @@ class AuthController extends Controller
                 return response()->json([
                     'access_token' => $token,
                     'message' => 'Logged in successfully',
+                    'email' => $user->email,
                     'success' => true
                 ], 200);
             } else {
@@ -40,12 +41,18 @@ class AuthController extends Controller
             $userDetails->password = bcrypt($data['password']);
             $userDetails->save();
 
-            $user = User::where('email', $data['email'])->first();
+            //Retrieve saved user id
+            $userId = $userDetails->id;
+
+            //Then login
+            auth()->attempt(['email' => $data['email'], 'password' => $data['password']]);
+            $user = User::where('id', $userId)->first();
             $token = $user->createToken('EventTalk')->plainTextToken;
 
             return response()->json([
                 'access_token' => $token,
                 'message' => 'Registered successfully',
+                'email' => $user->email,
                 'success' => true
             ], 200);
         }

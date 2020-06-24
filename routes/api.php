@@ -19,14 +19,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/authenticate', 'AuthController@authenticate' );
-Route::post('/logout', 'AuthController@logout');
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/talks', 'UserController@getAllTalks');
     Route::post('/create-talk', 'UserController@createTalk');
-    Route::delete('/talks/{id}', 'UserController@deleteTalk');
+    Route::get('/talks', 'UserController@getAllTalks');
+    Route::get('/talks/{id}', 'UserController@getTalk');
+    Route::post('/talk/{id}/attendee', 'UserController@addAttendeeToTalk');
+    Route::delete('/talks/delete/{id}', 'UserController@deleteTalk');
+    Route::delete('/talks/{talk_id}/attendees/delete/{id}', 'UserController@deleteTalkAttendee');
 
     Route::get('/attendees', 'UserController@getAllAttendees');
     Route::post('/create-attendee', 'UserController@createAttendee');
-    Route::delete('/attendees/{id}', 'UserController@deleteAttendee');
+    Route::delete('/attendees/delete/{id}', 'UserController@deleteAttendee');
+
+    Route::post('/logout', 'AuthController@logout');
 });

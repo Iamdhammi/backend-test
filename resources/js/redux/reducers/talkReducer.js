@@ -4,7 +4,8 @@ const initialState = {
     loading: false,
     errorMessage: '',
     successMessage: '',
-    talks: null
+    talks: null,
+    talk: null
 }
 
 const talk = (state = initialState, action) => {
@@ -38,6 +39,40 @@ const talk = (state = initialState, action) => {
                 errorMessage: action.payload,
                 loading: false
             }
+        case t.FETCH_TALK_SUCCESS:
+            return {
+                ...state,
+                talk: action.payload,
+                loading: false
+            }
+        case t.FETCH_TALK_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload,
+                loading: false
+            }
+        case t.ADD_ATTENDEE_TO_TALK_SUCCESS:
+            return {
+                ...state,
+                successMessage: action.payload,
+                loading: false
+            }
+        case t.ADD_ATTENDEE_TO_TALK_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload,
+                loading: false
+            }
+        case t.DELETE_TALK_ATTENDEE_SUCCESS:
+            return {
+                ...state,
+                successMessage: action.payload
+            }
+        case t.DELETE_TALK_ATTENDEE_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload
+            }
         case t.DELETE_TALK_SUCCESS:
             return {
                 ...state,
@@ -53,6 +88,7 @@ const talk = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 successMessage: '',
+                talk: null
             }
         case t.CLEAR_ERROR: 
             return {

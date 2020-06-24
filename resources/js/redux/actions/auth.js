@@ -13,7 +13,8 @@ export const login_user = credentials => dispatch => {
     .post('/api/authenticate', credentials)
     .then(response => {
         console.log(response);
-        localStorage.setItem('eventToken', response.data.access_token)
+        localStorage.setItem('eventToken', response.data.access_token);
+        localStorage.setItem('userEmail', response.data.email);
         dispatch({
             type: t.LOGIN_SUCCESS,
             payload: response.data.message

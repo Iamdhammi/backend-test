@@ -19,7 +19,7 @@ class CreateTalksTable extends Migration
             $table->string('talk_name');
             $table->date('talk_date');
             $table->time('talk_time');
-            $table->string('talk_address');
+            $table->string('talk_venue');
             $table->timestamps();
         });
     }

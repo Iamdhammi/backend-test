@@ -20,7 +20,8 @@ const customStyles = {
 
 
 function Datatable(props){
-    const { data, deleteTalk, attendee, deleteAttendee } = props;
+    const { deleteTalk, attendee, deleteAttendee, talkAttendee , deleteTalkAttendee} = props;
+    const data = props.data ? props.data : [];
     const column = [
         {
             name: 'Talk Name',
@@ -44,14 +45,14 @@ function Datatable(props){
         },
         {
             name: 'Talk Venue',
-            selector: 'talk_address',
+            selector: 'talk_venue',
             sortable: true,
-            cell: row => `${row.talk_address}`
+            cell: row => `${row.talk_venue}`
         },
         {
             name: 'Actions',
             cell: row => (
-                <h5 style={{color: 'green', cursor: 'pointer'}}><Icon name="edit" /> Edit</h5>
+                <Link to={`/talks/${row.id}`}><h5 style={{color: 'green'}}><Icon name="eye" /> View</h5></Link>
             ),
             maxWidth: '100px',
         },
@@ -87,10 +88,36 @@ function Datatable(props){
             maxWidth: '100px',
         },
     ]
+
+    const TalkAttendeeColumn = [
+        {
+            name: 'Full Name',
+            selector: 'full_name',
+            sortable: true,
+            cell: row => (
+                    <h4>{row.full_name}</h4>
+            ),
+        },
+        {
+            name: 'Email address',
+            selector: 'email',
+            sortable: true,
+            cell: row => (
+                    <h4>{row.email}</h4>
+            ),
+        },
+        {   
+            name: 'Actions',
+            cell: row => (
+                <h5 style={{color: 'red', cursor: 'pointer'}} onClick={() => deleteTalkAttendee( row.talk_id,row.id)} ><Icon name="delete" />Delete</h5>
+            ),
+            maxWidth: '100px',
+        },
+    ]
     return (
         <div>
             <DataTable
-                columns={ attendee ? AttendeeColumn : column}
+                columns={ attendee ? AttendeeColumn : talkAttendee ? TalkAttendeeColumn : column}
                 data={data}
                 customStyles={customStyles}
                 pagination
@@ -105,6 +132,5 @@ function Datatable(props){
 export default Datatable;
 
 Datatable.propTypes = {
-    data: PropTypes.array.isRequired,
     attendee: PropTypes.bool
 }

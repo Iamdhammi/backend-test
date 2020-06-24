@@ -10365,6 +10365,9 @@ h3 {
 .my-modal--input input:focus {
   border-color: #999 !important;
 }
+.my-modal--select {
+  width: 400px;
+}
 .my-modal--subtitle {
   font-size: 11px;
   color: #000;
@@ -10666,6 +10669,9 @@ h3 {
   cursor: pointer;
   color: #000;
 }
+.dashboard__content--sidebar a:hover {
+  color: #fad03b;
+}
 .dashboard__content--sidebar a.active {
   background-color: #fad03b;
   border-color: #fad03b;
@@ -10684,4 +10690,11 @@ h3 {
 
 .datatable-section {
   margin: 20px 0;
+}
+
+.talk-section {
+  margin: 10px 0;
+}
+.talk-section__details {
+  display: flex;
 }
