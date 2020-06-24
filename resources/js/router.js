@@ -4,13 +4,14 @@ import ReactDOM from 'react-dom';
 import history from './history';
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from "redux-persist";
 import PrivateRoute from './common/privateRoute';
 
 import Index from './pages';
 import Dashboard from './pages/auth/Dashboard';
+import Attendees from './pages/auth/Attendees';
 
 
 export default function Routes() {
@@ -30,7 +31,7 @@ export default function Routes() {
         <div style={{position: 'absolute', top: 'calc(50% - 40px)', right: 'calc(50%)'}}>
           <Loader
             type="Oval"
-            color="#ff214f"
+            color="#fad03b"
             height={40}
             width={40}
             timeout={3000}
@@ -48,6 +49,7 @@ export default function Routes() {
                   <Switch>
                       <Route exact path="/" component={Index} />
                       <PrivateRoute exact={true} path="/dashboard" component={Dashboard} />
+                      <PrivateRoute exact={true} path="/attendees" component={Attendees} />
                   </Switch>
               </Router>
           </Provider>

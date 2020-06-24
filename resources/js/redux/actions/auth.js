@@ -1,6 +1,7 @@
 import * as t from '../types';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { baseConfig } from '../api/baseConfig';
 
 
 export const login_user = credentials => dispatch => {
@@ -28,9 +29,17 @@ export const login_user = credentials => dispatch => {
 }
 
 export const logout_user = () => dispatch => {
-    Cookies.remove('token');
-    localStorage.removeItem('user');
-    dispatch({
-        type: t.LOGOUT_SUCCESS
+    baseConfig
+    .post('/api/logout')
+    .then(response => {
+        localStorage.removeItem("eventToken");
+        dispatch({
+            type: t.LOGOUT_SUCCESS
+        })
     })
+    .catch(error => [
+        dispatch({
+            type: t.LOGOUT_ERROR
+        })
+    ])
 }

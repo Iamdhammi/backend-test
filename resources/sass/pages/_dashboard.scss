@@ -1,0 +1,47 @@
+.dashboard {
+
+    &__content {
+        margin: 50px 0;
+
+        &--sidebar {
+            a {
+                border: 1px solid #ccc;
+                border-bottom: none;
+                font-weight: 600;
+                font-size: 13px;
+                display: block;
+                padding: 10px 15px;
+                text-transform: uppercase;
+                cursor: pointer;
+                color: #000;
+
+                &.active {
+                    background-color: $theme-color;
+                    border-color: $theme-color;
+                    color: #000;
+                }
+
+                &:last-child {
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+        }
+
+        &--main {
+            // margin: 0 10px;
+        }
+    }
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+
+    &--button {
+        background-color: $theme-color!important;
+    }
+}
+
+.datatable-section {
+    margin: 20px 0;
+}

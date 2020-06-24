@@ -35,6 +35,11 @@ const auth = (state = initialState, action) => {
                 ...state,
                 isLoggedin: false,
             }
+        case t.LOGOUT_ERROR: 
+            return {
+                ...state,
+                isLoggedin: true
+            }
         case t.CLEAR_SUCCESS: 
             return {
                 ...state,

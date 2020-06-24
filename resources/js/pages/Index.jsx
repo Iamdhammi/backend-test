@@ -2,11 +2,20 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import Navbar from '../components/Navbar';
 import { checkPropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
 function Index(props) {
+    const {isLoggedin, history}= props;
     React.useEffect(() => {
         changeBackground();
     }, []);
+
+     React.useEffect(() => {
+        // const token = localStorage.getItem('eventToken')
+        if(isLoggedin) {
+            history.push('/dashboard');
+        }
+    }, [isLoggedin, history]);
 
     const changeBackground = () => {
         var bg = [
@@ -44,4 +53,14 @@ function Index(props) {
     )
 }
 
-export default Index;
+const mapStatToProps = ({ auth }) => {
+    return {
+        isLoggedin: auth.isLoggedin,
+    }
+}
+
+
+export default connect(
+    mapStatToProps,
+    {}
+)(Index);

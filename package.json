@@ -25,8 +25,10 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "dayjs": "^1.8.28",
         "js-cookie": "^2.2.1",
         "prop-types": "^15.7.2",
+        "react-data-table-component": "^6.9.3",
         "react-loader-spinner": "^3.1.14",
         "react-modal": "^3.11.2",
         "react-redux": "^7.2.0",
@@ -37,6 +39,7 @@
         "redux-thunk": "^2.3.0",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.88.2",
+        "styled-components": "^5.1.1",
         "yup": "^0.29.1"
     }
 }

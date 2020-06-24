@@ -73,7 +73,7 @@ function AuthPage(props) {
             <h2>Welcome to EventTalk</h2>
             <Icon name="cancel" className="cancel" onClick={props.closeModal}/>
             <div className="auth">
-                <div className="contact__form">
+                <div className="modal__form">
                     <p className="auth--title">Email address</p>
                     <Input 
                         icon='mail' 
@@ -90,9 +90,9 @@ function AuthPage(props) {
                         }}
                         error={loginEmailError ? true : false}
                     />
-                    <p className="contact__form--error">{loginEmailError}</p>
+                    <p className="modal__form--error">{loginEmailError}</p>
                 </div>
-                <div className="contact__form">
+                <div className="modal__form">
                     <p className="auth--title">Password</p>
                     {
                         showLoginPassword ?
@@ -115,16 +115,16 @@ function AuthPage(props) {
                         error = {loginPasswordError ? true : false}
                     />
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <p className="contact__form--error">{loginPasswordError}</p>
+                        <p className="modal__form--error">{loginPasswordError}</p>
                         <p className="auth--subtitle">Forgot Password?</p>
                     </div>
                     
                 </div>
-                <div className="contact__form">
+                <div className="modal__form">
                     <p className="auth-error">{loginAuthError}</p>
                 </div>
-                <div className="contact__form">
-                    <Button fluid className="contact__form--btn"  onClick={() => handleLogin()} loading={props.loading} disabled={props.loading}>
+                <div className="modal__form">
+                    <Button fluid className="modal__form--btn"  onClick={() => handleLogin()} loading={props.loading} disabled={props.loading}>
                         Sign in
                     </Button>
                 </div>

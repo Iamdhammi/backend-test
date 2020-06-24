@@ -18,4 +18,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('/authenticate', 'AuthController@Authenticate' );
+Route::post('/authenticate', 'AuthController@authenticate' );
+Route::post('/logout', 'AuthController@logout');
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/talks', 'UserController@getAllTalks');
+    Route::post('/create-talk', 'UserController@createTalk');
+    Route::delete('/talks/{id}', 'UserController@deleteTalk');
+
+    Route::get('/attendees', 'UserController@getAllAttendees');
+    Route::post('/create-attendee', 'UserController@createAttendee');
+    Route::delete('/attendees/{id}', 'UserController@deleteAttendee');
+});

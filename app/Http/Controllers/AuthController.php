@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 
+
 class AuthController extends Controller
 {
-    public function Authenticate(Request $request) {
+    public function authenticate(Request $request) {
         $request->validate([
             'email' => 'email|required',
             'password' => 'required'
@@ -22,11 +24,13 @@ class AuthController extends Controller
                 $token = $user->createToken('EventTalk')->plainTextToken;
                 return response()->json([
                     'access_token' => $token,
-                    'message' => 'Logged in successfully'
+                    'message' => 'Logged in successfully',
+                    'success' => true
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => 'Oops! Password is incorrect'
+                    'message' => 'Oops! Password is incorrect',
+                    'success' => false
                 ], 500);
             }
         } else {
@@ -41,8 +45,19 @@ class AuthController extends Controller
 
             return response()->json([
                 'access_token' => $token,
-                'message' => 'Registered successfully'
+                'message' => 'Registered successfully',
+                'success' => true
             ], 200);
         }
     }
+
+    public function logout() {
+        $userId = Auth::id();
+        $user = User::find($userId);
+        $user->tokens()->where('tokenable_id', $userId)->delete();
+        return response()->json([
+            'success' => true
+        ], 200);
+    }
 }
+

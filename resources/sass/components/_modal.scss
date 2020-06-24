@@ -1,0 +1,108 @@
+
+
+.my-modal {
+    &--title {
+        text-align: left;
+        color: #000;
+        margin: 0;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+    &--input {
+        width: 400px;
+
+        input {
+            &:focus {
+                border-color: #999!important;
+            }
+        }
+    }
+
+    &--subtitle {
+        font-size: 11px;
+        color: #000;
+        text-align: right;
+        padding-top: 2px;
+    }
+
+    &--bottom-text {
+        padding-top: 10px;
+        font-size: 11px;
+        span {
+            font-weight: 600;
+            a {
+                color: #000;
+            }
+        }
+    }
+
+    &--icon {
+        position: absolute;
+        right: 5px;
+        top: 42px;
+        z-index: 1;
+    }
+}
+
+.modal__form {
+    padding: 10px 0;
+    position: relative;
+    &--label {
+        margin: 10px 0 10px 0;
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+    }
+    &--input {
+        width: 100%;
+        input {
+            &:focus {
+                border-color: $theme-color!important;
+            }
+        }
+    }
+    &--textarea {
+        min-height: 100px;
+        width: 100%;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+    &--dropdrown {
+        color: #000;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+
+    &--error {
+        color: red;
+        text-align: left;
+        font-size: 10px;
+        padding-top: 2px;
+    }
+    &--btn {
+        background-color: $theme-color!important;
+    }
+    .ui.selection.dropdown {
+        min-width: 100%!important;
+        &:focus {
+            border-color: $theme-color!important;
+        }
+    }
+    .ui.selection.active.dropdown {
+        border-color: $theme-color!important;
+    }
+    .ui.selection.active.dropdown .menu {
+        border-color: $theme-color!important;
+    }
+
+    .ui.checkbox input[type="checkbox"]:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:focus ~ label:before,
+    .ui.checkbox input[type="checkbox"]:indeterminate:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:indeterminate:focus ~ label:before,
+    .ui.checkbox input[type="checkbox"]:checked:focus ~ .box:before,
+    .ui.checkbox input[type="checkbox"]:checked:focus ~ label:before {
+        border: 1px solid $theme-color;
+    }
+}
