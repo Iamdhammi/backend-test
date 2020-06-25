@@ -8,16 +8,11 @@ import {connect} from 'react-redux';
 import { login_user } from '../redux/actions/auth';
 
 function Navbar(props) {
-    let btnRef, mobileRef;
     const { dashboard } = props;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [emailError, setEmailError] = React.useState('');
     const [loginError, setLoginError] = React.useState('');
 
-    const toggleMobileMenu = () => {
-		btnRef.classList.toggle("mobile-toggler--opened");
-		mobileRef.classList.toggle("mobile-menu--opened");
-    };
 
     const openModal = () => {
         setIsOpen(true);
@@ -53,34 +48,7 @@ function Navbar(props) {
                     </div>
                 </div>
             </div>
-            <button
-                className="mobile-toggler"
-                ref={ref => (btnRef = ref)}
-                onClick={toggleMobileMenu}
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div className="mobile-menu" ref={ref => (mobileRef = ref)}>
-                <ul>
-                    <li>
-                        <Link to="/">
-                        Properties
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Sell
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Sign In
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+            
             <CustomModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
                 <AuthPage closeModal={closeModal} handleLogin={handleLogin} loginError={loginError} emailError={emailError} clearLoginError={clearLoginError} loading={props.loading} />
             </CustomModal>

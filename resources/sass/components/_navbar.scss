@@ -31,15 +31,6 @@
         &--routes {
             display: flex;
             align-items: center;
-            @include screen("small") {
-                display: none;
-            }
-            @include screen("mid") {
-                display: none;
-            }
-            @include screen("med-small") {
-                display: none;
-            }
             ul {
                 list-style-type: none;
                 margin: 0;
@@ -85,98 +76,6 @@
 			}
         }
     }
-
-    .mobile-toggler {
-		height: 42px;
-		width: 35px;
-		position: fixed;
-		right: 20px;
-		top: 15px;
-		background-color: transparent;
-		z-index: 10;
-		border: none;
-		outline: none;
-		cursor: pointer;
-		border-radius: 3px;
-		@include screen("large") {
-			display: none;
-		}
-		@include screen("med") {
-			display: none;
-		}
-
-		span {
-			position: absolute;
-			left: 10px;
-			top: 12px;
-			width: 30px;
-			height: 2px;
-			background-color: #fff;
-			display: block;
-			transition: all 0.3s;
-			&:nth-child(2) {
-				top: 20px;
-			}
-			&:nth-child(3) {
-				top: 28px;
-			}
-		}
-		&--opened {
-			span {
-				-webkit-transform: rotate(45deg);
-				transform: rotate(45deg);
-				top: 20px !important;
-				background-color: #000;
-				&:nth-child(2) {
-					opacity: 0;
-				}
-				&:nth-child(3) {
-					top: 20px !important;
-					-webkit-transform: rotate(-45deg);
-					transform: rotate(-45deg);
-				}
-			}
-		}
-	}
-
-	.mobile-menu {
-		position: fixed;
-		right: -100%;
-		height: 100%;
-		z-index: 9;
-		width: 0;
-		top: 0;
-		background-color: #fff;
-		opacity: 0;
-		-webkit-transition: all 0.7s;
-		transition: all 0.7s;
-		ul {
-			padding: 0;
-			margin-top: 90px;
-			li {
-				font-size: 0.85em;
-				font-weight: 600;
-				display: block;
-				padding: 20px 30px;
-				// color: #fc9100;
-				font-size: 1.2rem;
-				cursor: pointer;
-				text-transform: capitalize;
-				text-align: center;
-				
-				a {
-					text-decoration: none;
-					color: #000
-				}
-			}
-		}
-		&--opened {
-			right: 0;
-			z-index: 9;
-			width: 100%;
-			opacity: 1;
-		}
-	}
 }
 
 .navbar-dashboard {
@@ -212,15 +111,6 @@
         &--routes {
             display: flex;
             align-items: center;
-            @include screen("small") {
-                display: none;
-            }
-            @include screen("mid") {
-                display: none;
-            }
-            @include screen("med-small") {
-                display: none;
-            }
             ul {
                 list-style-type: none;
                 margin: 0;
@@ -266,96 +156,4 @@
 			}
         }
     }
-
-    .mobile-toggler {
-		height: 42px;
-		width: 35px;
-		position: fixed;
-		right: 20px;
-		top: 15px;
-		background-color: transparent;
-		z-index: 10;
-		border: none;
-		outline: none;
-		cursor: pointer;
-		border-radius: 3px;
-		@include screen("large") {
-			display: none;
-		}
-		@include screen("med") {
-			display: none;
-		}
-
-		span {
-			position: absolute;
-			left: 10px;
-			top: 12px;
-			width: 30px;
-			height: 2px;
-			background-color: #fff;
-			display: block;
-			transition: all 0.3s;
-			&:nth-child(2) {
-				top: 20px;
-			}
-			&:nth-child(3) {
-				top: 28px;
-			}
-		}
-		&--opened {
-			span {
-				-webkit-transform: rotate(45deg);
-				transform: rotate(45deg);
-				top: 20px !important;
-				background-color: #000;
-				&:nth-child(2) {
-					opacity: 0;
-				}
-				&:nth-child(3) {
-					top: 20px !important;
-					-webkit-transform: rotate(-45deg);
-					transform: rotate(-45deg);
-				}
-			}
-		}
-	}
-
-	.mobile-menu {
-		position: fixed;
-		right: -100%;
-		height: 100%;
-		z-index: 9;
-		width: 0;
-		top: 0;
-		background-color: #fff;
-		opacity: 0;
-		-webkit-transition: all 0.7s;
-		transition: all 0.7s;
-		ul {
-			padding: 0;
-			margin-top: 90px;
-			li {
-				font-size: 0.85em;
-				font-weight: 600;
-				display: block;
-				padding: 20px 30px;
-				// color: #fc9100;
-				font-size: 1.2rem;
-				cursor: pointer;
-				text-transform: capitalize;
-				text-align: center;
-				
-				a {
-					text-decoration: none;
-					color: #000
-				}
-			}
-		}
-		&--opened {
-			right: 0;
-			z-index: 9;
-			width: 100%;
-			opacity: 1;
-		}
-	}
 }
