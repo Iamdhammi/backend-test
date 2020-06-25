@@ -27,4 +27,4 @@ view the list of Attendees added to the Talk selected and also will be able to a
 ### Challenges
 
 1. The database is hosted on https://db4free.net/ which provides free mysql server. Thus, there might be a little lag in the load time when performing various actions.
-2. The mobile responsiveness of the UI was worked on due to the limited time allocated
+2. The mobile responsiveness of the UI was not worked on due to the limited time allocated
