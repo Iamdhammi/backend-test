@@ -90,14 +90,12 @@ export const delete_talk_attendee = (talk_id, id) => dispatch => {
     baseConfig
     .delete(`/api/talks/${talk_id}/attendees/delete/${id}`)
     .then( response => {
-        console.log(response);
         dispatch({
             type: t.DELETE_TALK_ATTENDEE_SUCCESS,
             payload: response.data.message
         })
     })
     .catch(error => {
-        console.log(error.response);
         dispatch({
             type: t.DELETE_TALK_ATTENDEE_ERROR,
             payload: error.response.data.message
@@ -109,14 +107,12 @@ export const delete_talk = id => dispatch => {
     baseConfig
     .delete(`/api/talks/delete/${id}`)
     .then( response => {
-        console.log(response);
         dispatch({
             type: t.DELETE_TALK_SUCCESS,
             payload: response.data.message
         })
     })
     .catch(error => {
-        console.log(error.response);
         dispatch({
             type: t.DELETE_TALK_ERROR,
             payload: error.response.data.message

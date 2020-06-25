@@ -12,7 +12,6 @@ export const login_user = credentials => dispatch => {
     axios
     .post('/api/authenticate', credentials)
     .then(response => {
-        console.log(response);
         localStorage.setItem('eventToken', response.data.access_token);
         localStorage.setItem('userEmail', response.data.email);
         dispatch({
@@ -21,11 +20,17 @@ export const login_user = credentials => dispatch => {
         })
     })
     .catch(error => {
-        console.log(error.response)
-        dispatch({
-            type: t.LOGIN_ERROR,
-            payload: error.response.data.message
-        });
+        if(error.response !== undefined) {
+            dispatch({
+                type: t.LOGIN_ERROR,
+                payload: error.response.data.message
+            });
+        } else {
+            dispatch({
+                type: t.LOGIN_ERROR,
+                payload: 'Oops! An error occured'
+            });
+        }
     })
 }
 
@@ -38,9 +43,16 @@ export const logout_user = () => dispatch => {
             type: t.LOGOUT_SUCCESS
         })
     })
-    .catch(error => [
-        dispatch({
-            type: t.LOGOUT_ERROR
-        })
-    ])
+    .catch(error => {
+        if(error.response !== undefined) {
+            dispatch({
+                type: t.LOGOUT_ERROR
+            })
+        } else {
+            dispatch({
+                type: t.LOGOUT_ERROR,
+                payload: 'Oops! An error occured'
+            });
+        }
+    })
 }

@@ -55,14 +55,12 @@ export const delete_attendee = id => dispatch => {
     baseConfig
     .delete(`/api/attendees/delete/${id}`)
     .then( response => {
-        console.log(response);
         dispatch({
             type: t.DELETE_ATTENDEE_SUCCESS,
             payload: response.data.message
         })
     })
     .catch(error => {
-        console.log(error.response);
         dispatch({
             type: t.DELETE_ATTENDEE_ERROR,
             payload: error.response.data.message
