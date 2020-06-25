@@ -77,6 +77,7 @@ class UserController extends Controller
         $userId = Auth::id();
 
         $talk = Talk::where('user_id', $userId)->where('id', $id)->first();
+        $talkAttendees = TalkAttendee::where('user_id', $userId)->where('talk_id', $id)->get();
         if(!$talk) {
             return response()->json([
                 'message' => 'Talk not found',
@@ -85,6 +86,10 @@ class UserController extends Controller
         }
 
         $talk->delete();
+        if($talkAttendees){
+            $talkAttendees->delete();
+        }
+
         return response()->json([
             'message' => 'Talk deleted successfully',
             'success' => true
